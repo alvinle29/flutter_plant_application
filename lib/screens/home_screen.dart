@@ -47,9 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   width: size.width * .9,
                   decoration: BoxDecoration(
-                    color: Constants.primaryColor.withOpacity(.1),
-                    borderRadius: BorderRadius.circular(20)
-                  ),
+                      color: Constants.primaryColor.withOpacity(.1),
+                      borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +71,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-          )
+          ),
+          Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              height: 50.0,
+              width: size.width,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _plantTypes.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: Text(
+                            _plantTypes[index],
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: selectedIndex == index
+                                    ? FontWeight.bold
+                                    : FontWeight.w300,
+                                color: selectedIndex == index
+                                    ? Constants.primaryColor
+                                    : Constants.blackColor),
+                          ),
+                        ));
+                  }))
         ],
       ),
     ));
