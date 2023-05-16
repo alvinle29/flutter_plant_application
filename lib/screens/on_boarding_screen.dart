@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_application/constants/constants.dart';
-import 'login_page.dart';
+import 'package:flutter_plant_application/screens/root_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -95,7 +95,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       } else {
                         Navigator.pushReplacement(
                             context, MaterialPageRoute(builder: (
-                            _) => const Login()));
+                            _) => const RootPage()));
                       }
                     });
                   },
