@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                         context,
                         PageTransition(
-                            child: DetailScreen(),
+                            child: DetailScreen(plantId: _plantList[index].plantId),
                             type: PageTransitionType.bottomToTop));
                   },
                   child: Container(
@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                           context,
                           PageTransition(
-                              child: DetailScreen(),
+                              child: DetailScreen(plantId: _plantList[index].plantId,),
                               type: PageTransitionType.bottomToTop));
                     },
                     child: Container(
