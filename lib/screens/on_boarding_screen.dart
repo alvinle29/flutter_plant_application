@@ -40,10 +40,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         alignment: Alignment.bottomCenter,
         children: [
           PageView(
-            onPageChanged: (int page) =>
-            {
+            onPageChanged: (int page) => {
               setState(
-                    () {
+                () {
                   currentIndex = page;
                 },
               )
@@ -79,9 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Constants.primaryColor
-              ),
+                  shape: BoxShape.circle, color: Constants.primaryColor),
               child: IconButton(
                   onPressed: () {
                     setState(() {
@@ -94,8 +91,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         }
                       } else {
                         Navigator.pushReplacement(
-                            context, MaterialPageRoute(builder: (
-                            _) => const RootPage()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const RootPage()));
                       }
                     });
                   },

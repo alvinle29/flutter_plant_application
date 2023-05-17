@@ -114,7 +114,7 @@ class _DetailScreenState extends State<DetailScreen> {
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 90, left: 30, right: 30),
               height: size.height * .5,
               width: size.width,
               decoration: BoxDecoration(
