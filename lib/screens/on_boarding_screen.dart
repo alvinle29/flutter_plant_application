@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_application/constants/constants.dart';
-import 'package:flutter_plant_application/screens/root_screen.dart';
+import 'package:flutter_plant_application/screens/sign_in_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -24,7 +24,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 20, left: 20),
             child: InkWell(
-              onTap: () => null,
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => const SignIn()));
+              },
               child: const Text(
                 'Skip',
                 style: TextStyle(
@@ -91,9 +94,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         }
                       } else {
                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const RootPage()));
+                            context, MaterialPageRoute(builder: (_) => const SignIn()));
                       }
                     });
                   },
