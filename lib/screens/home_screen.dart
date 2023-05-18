@@ -3,6 +3,7 @@ import 'package:flutter_plant_application/constants/constants.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../models/plants.dart';
+import '../widgets/plant_widget.dart';
 import 'detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -221,75 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.vertical,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: DetailScreen(plantId: _plantList[index].plantId,),
-                              type: PageTransitionType.bottomToTop));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Constants.primaryColor.withOpacity(.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 80,
-                      padding: const EdgeInsets.only(left: 10, top: 10),
-                      margin: const EdgeInsets.only(bottom: 10, top: 10),
-                      width: size.width,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Stack(clipBehavior: Clip.none, children: [
-                              Container(
-                                width: 60,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  color: Constants.primaryColor.withOpacity(.8),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 5,
-                                left: 0,
-                                right: 0,
-                                child: SizedBox(
-                                  height: 80,
-                                  child:
-                                      Image.asset(_plantList[index].imageURL),
-                                ),
-                              ),
-                              Positioned(
-                                  bottom: 5,
-                                  left: 80,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(_plantList[index].category),
-                                      Text(
-                                        _plantList[index].plantName,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Constants.blackColor),
-                                      )
-                                    ],
-                                  ))
-                            ]),
-                            Container(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Text(
-                                  r'$' + _plantList[index].price.toString(),
-                                  style: TextStyle(
-                                      color: Constants.primaryColor,
-                                      fontSize: 18)),
-                            )
-                          ]),
-                    ),
-                  );
+                  return PlantWidget(index: index, plantList: _plantList);
                 }),
           )
         ],
