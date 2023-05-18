@@ -59,10 +59,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 SizedBox(
-                  height: size.height * .7,
+                  height: size.height * .5,
                   width: size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
