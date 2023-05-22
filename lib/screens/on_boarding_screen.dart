@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plant_application/constants/constants.dart';
 import 'package:flutter_plant_application/screens/sign_in_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -25,8 +26,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: const EdgeInsets.only(right: 20, left: 20),
             child: InkWell(
               onTap: () {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => const SignIn()));
+                context.go("/signIn");
               },
               child: const Text(
                 'Skip',
@@ -93,8 +93,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               curve: Curves.easeIn);
                         }
                       } else {
-                        Navigator.pushReplacement(
-                            context, MaterialPageRoute(builder: (_) => const SignIn()));
+                        context.go("/signIn");
                       }
                     });
                   },

@@ -1,6 +1,11 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_plant_application/components/auth.dart';
 import 'package:flutter_plant_application/screens/root_screen.dart';
 import 'package:flutter_plant_application/screens/sign_up_screen.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:page_transition/page_transition.dart';
 
@@ -8,8 +13,30 @@ import '../constants/constants.dart';
 import '../widgets/custom_textfield.dart';
 import 'forgot_password.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  String? errorMessage = '';
+  bool isLogin = true;
+
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+          email: _controllerEmail.text, password: _controllerPassword.text);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +61,25 @@ class SignIn extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const CustomTextfield(
+              CustomTextfield(
+                controller: _controllerEmail,
                 obscureText: false,
                 hintText: 'Enter Email',
                 icon: Icons.alternate_email,
               ),
-              const CustomTextfield(
+              CustomTextfield(
                 obscureText: true,
                 hintText: 'Enter Password',
                 icon: Icons.lock,
+                controller: _controllerPassword,
               ),
               const SizedBox(
                 height: 10,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          child: const RootPage(),
-                          type: PageTransitionType.bottomToTop));
+                  signInWithEmailAndPassword();
+                  context.go("/root");
                 },
                 child: Container(
                   width: size.width,
@@ -62,7 +88,7 @@ class SignIn extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   child: const Center(
                     child: Text(
                       'Sign In',
@@ -79,11 +105,7 @@ class SignIn extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          child: const ForgotPassword(),
-                          type: PageTransitionType.bottomToTop));
+                  context.go("/forgot-password");
                 },
                 child: Center(
                   child: Text.rich(
@@ -107,8 +129,8 @@ class SignIn extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Expanded(child: Divider()),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -120,28 +142,34 @@ class SignIn extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                width: size.width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Constants.primaryColor),
-                    borderRadius: BorderRadius.circular(10)),
-                padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      height: 30,
-                      child: Image.asset('assets/images/google.png'),
-                    ),
-                    Text(
-                      'Sign In with Google',
-                      style: TextStyle(
-                        color: Constants.blackColor,
-                        fontSize: 18.0,
+              GestureDetector(
+                onTap: () {
+                  Auth().signInWithGoogle();
+                  context.go("/root");
+                },
+                child: Container(
+                  width: size.width,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Constants.primaryColor),
+                      borderRadius: BorderRadius.circular(10)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        height: 30,
+                        child: Image.asset('assets/images/google.png'),
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Sign In with Google',
+                        style: TextStyle(
+                          color: Constants.blackColor,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
@@ -149,11 +177,7 @@ class SignIn extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          child: const SignUp(),
-                          type: PageTransitionType.bottomToTop));
+                  context.go("/signUp");
                 },
                 child: Center(
                   child: Text.rich(

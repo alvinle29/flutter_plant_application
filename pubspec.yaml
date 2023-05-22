@@ -39,6 +39,8 @@ dependencies:
   page_transition: ^2.0.9
   firebase_core: ^2.13.0
   firebase_auth: ^4.6.1
+  google_sign_in:
+  go_router: ^7.0.2
 
 dev_dependencies:
   flutter_test:

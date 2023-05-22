@@ -31,10 +31,10 @@ class ForgotPassword extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const CustomTextfield(
+              CustomTextfield(
                 obscureText: false,
                 hintText: 'Enter Email',
-                icon: Icons.alternate_email,
+                icon: Icons.alternate_email, controller: null,
               ),
               GestureDetector(
                 onTap: () {},
