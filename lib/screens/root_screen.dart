@@ -5,9 +5,7 @@ import 'package:flutter_plant_application/screens/cart_screen.dart';
 import 'package:flutter_plant_application/screens/favorite_screen.dart';
 import 'package:flutter_plant_application/screens/home_screen.dart';
 import 'package:flutter_plant_application/screens/profile_screen.dart';
-import 'package:flutter_plant_application/screens/scan_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 
 import '../models/plants.dart';
 

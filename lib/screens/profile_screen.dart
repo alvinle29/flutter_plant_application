@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_plant_application/components/auth.dart';
+import 'package:go_router/go_router.dart';
 
 import '../constants/constants.dart';
 import '../widgets/profile_widget.dart';
@@ -66,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                   width: size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       ProfileWidget(
                         icon: Icons.person,
                         title: 'My Profile',
@@ -87,9 +91,16 @@ class ProfileScreen extends StatelessWidget {
                         icon: Icons.share,
                         title: 'Share',
                       ),
-                      ProfileWidget(
-                        icon: Icons.logout,
-                        title: 'Log Out',
+                      GestureDetector(
+                        onTap: (){
+                          log('1');
+                          Auth().signOut();
+                          context.go('/signIn');
+                        },
+                        child: ProfileWidget(
+                          icon: Icons.logout,
+                          title: 'Log Out',
+                        ),
                       ),
                     ],
                   ),
