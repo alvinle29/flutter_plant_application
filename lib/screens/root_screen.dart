@@ -6,6 +6,7 @@ import 'package:flutter_plant_application/screens/favorite_screen.dart';
 import 'package:flutter_plant_application/screens/home_screen.dart';
 import 'package:flutter_plant_application/screens/profile_screen.dart';
 import 'package:flutter_plant_application/screens/scan_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../models/plants.dart';
@@ -70,11 +71,7 @@ class _RootPageState extends State<RootPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const ScanScreen(),
-                  type: PageTransitionType.bottomToTop));
+          context.go('/scan');
         },
         backgroundColor: Constants.primaryColor,
         child: Image.asset(
